@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
+import Home from './components/home/Home.js';
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log('1. Get the data from server/localStorage');
+    // NOTE: because i will want to keep it for future use, i will add
+    // react-router and redux and redux thunk
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="header">
+            {/* NOTE:  Future Navigation bar here */}
+          </header>
+          <Route exact path="/" component={Home} />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+function mapDispatchToProps (dispatch) {
+  return {
+    loadInitialData: function (params) {
+      dispatch('get_issues_functions')
+    }
+  }
+}
+
+function mapStateToProps (state) {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
