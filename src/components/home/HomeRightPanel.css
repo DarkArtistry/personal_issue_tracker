@@ -1,0 +1,16 @@
+.HomeRightPanel {
+  position: relative;
+  min-height: 100vh;
+  min-width: 25vw;
+  background-color: yellow;
+  text-align: justify;
+}
+
+.inputGroup {
+  padding: 1rem;
+}
+
+textarea {
+  resize: none;
+  vertical-align: top;
+}

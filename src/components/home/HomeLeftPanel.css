@@ -1,0 +1,6 @@
+.HomeLeftPanel {
+  position: relative;
+  min-height: 100vh;
+  min-width: 75vw;
+  background-color: green;
+}
