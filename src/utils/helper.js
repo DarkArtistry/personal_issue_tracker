@@ -18,6 +18,6 @@ export function generateId() {
       autoId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
 
-    assert(autoId.length === 20, 'Invalid auto ID: ' + autoId);
+    assert(autoId.length === 28, 'Invalid auto ID: ' + autoId);
     return autoId;
 }

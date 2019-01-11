@@ -7,7 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import configureStore from './core/configureStore';
 
 const state = {
-  issues: [],
+  issues: {
+    data: []
+  },
 };
 
 const store = configureStore(state);

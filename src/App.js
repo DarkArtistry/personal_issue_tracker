@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import Home from './components/home/Home.js';
+import { getIssues } from './actions'
 
 class App extends Component {
 
@@ -10,6 +11,7 @@ class App extends Component {
     console.log('1. Get the data from server/localStorage');
     // NOTE: because i will want to keep it for future use, i will add
     // react-router and redux and redux thunk
+    this.props.loadInitialData();
   }
 
   render() {
@@ -29,7 +31,7 @@ class App extends Component {
 function mapDispatchToProps (dispatch) {
   return {
     loadInitialData: function (params) {
-      dispatch('get_issues_functions')
+      dispatch(getIssues())
     }
   }
 }
