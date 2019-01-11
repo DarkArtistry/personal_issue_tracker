@@ -42,3 +42,7 @@ export function updateIssue(params) {
 export function deleteIssue(params) {
   return fetchActionSection('issues', 'deleteIssue', params);
 }
+
+export function issueSort(params) {
+  return fetchActionSection('issues', 'issueSort', params);
+}

@@ -18,6 +18,10 @@ const DELETE_ISSUE_REQUEST = 'DELETE_ISSUE_REQUEST';
 const DELETE_ISSUE_SUCCESS = 'DELETE_ISSUE_SUCCESS';
 const DELETE_ISSUE_FAILURE = 'DELETE_ISSUE_FAILURE';
 
+const ISSUES_SORT_REQUEST = 'ISSUES_SORT_REQUEST';
+const ISSUES_SORT_SUCCESS = 'ISSUES_SORT_SUCCESS';
+const ISSUES_SORT_FAILURE = 'ISSUES_SORT_FAILURE';
+
 export function issuesActions (params, route) {
   return {
     getIssues: {
@@ -42,6 +46,11 @@ export function issuesActions (params, route) {
       types: [DELETE_ISSUE_REQUEST, DELETE_ISSUE_SUCCESS, DELETE_ISSUE_FAILURE],
       [STORAGE_KEY]: 'issues',
       method: 'delete'
+    },
+    issueSort: {
+      types: [ISSUES_SORT_REQUEST, ISSUES_SORT_SUCCESS, ISSUES_SORT_FAILURE],
+      [STORAGE_KEY]: 'issues',
+      method: 'put'
     }
   }[route]
 }

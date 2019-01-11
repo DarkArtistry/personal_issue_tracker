@@ -9,16 +9,39 @@ import { issueClicked } from '../../actions';
 // Stateless components are easier to test, because you never have to
 // interact or set up state.
 
-const ListStyleIssue = ({ data, issueClicked }) => {
+const ListStyleIssue = ({
+    data,
+    issueClicked,
+    dragStartHoist,
+    itemIndex,
+    dragEndHoist
+  }) => {
 
   const handleClick = () => {
     issueClicked(data)
   }
 
+  const onDragStart = e => {
+    dragStartHoist(itemIndex);
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/html", e.target.parentNode);
+    e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
+  };
+
+  const onDragEnd = e => {
+    dragEndHoist()
+  }
+
   const { id, title, type, assignedTo, description } = data;
 
   return (
-    <div className="issueListStyle" onClick={handleClick}>
+    <div
+      className="issueListStyle"
+      onClick={handleClick}
+      draggable
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+    >
       <h2>{title}</h2>
       <div>Case ID : {id}</div>
       <div>{type}</div>

@@ -54,11 +54,21 @@ async function callLocalStorage(storageKey, method, params) {
       return issueData
       break;
     case 'put':
-      issueData = JSON.parse(issueData)
-      let updatedIssueData = issueData.map((issue) => {
-        if (issue.id === params.id) return params;
-        return issue;
-      })
+      issueData = JSON.parse(issueData);
+      let updatedIssueData;
+      if (params.id) {
+        // If it's a singular issue update
+        updatedIssueData = issueData.map((issue) => {
+          if (issue.id === params.id) return params;
+          return issue;
+        })
+      } else if (params.length) {
+        // If it's a sorting update, replace whole array
+        updatedIssueData = params;
+      } else {
+        // Error handling
+        updatedIssueData = [];
+      }
       localStorage.setItem(`${storageKey}`, `${JSON.stringify(updatedIssueData)}`);
       return updatedIssueData
       break;
