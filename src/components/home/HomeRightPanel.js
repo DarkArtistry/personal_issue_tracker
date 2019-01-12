@@ -11,13 +11,14 @@ class HomeRightPanel extends Component {
 
   constructor(props) {
     super(props);
-    const { formData: { id, title, type, assignedTo, description }} = props;
+    const { formData: { id, title, type, assignedTo, description, status }} = props;
     this.state = {
       id: id || '',
       title: title || '',
       type: type || 'question',
       assignedTo: assignedTo || '',
-      description: description || ''
+      description: description || '',
+      status: status || 'open'
     };
     this.handleChange = this.handleChange.bind(this);
     this.createIssue = this.createIssue.bind(this);
@@ -26,9 +27,7 @@ class HomeRightPanel extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     let { formData } = this.props;
-    if (prevProps.formData.id !== formData.id) {
-      console.log('prevProps.formData.id', prevProps.formData.id, 'formData.id', formData.id);
-        console.log('formdata is ', formData);
+    if (JSON.stringify(prevProps.formData) !== JSON.stringify(formData)) {
         this.setState(formData)
     }
   }
@@ -46,6 +45,7 @@ class HomeRightPanel extends Component {
     let id = generateId();
     console.log('generated id %s', id);
     state.id = id;
+    console.log('state before creating', state);
     this.props.createIssue(state)
   }
 
@@ -65,7 +65,7 @@ class HomeRightPanel extends Component {
   }
 
   render() {
-    const { issueTypes } = config;
+    const { issueTypes, statusTypes } = config;
     let {id, title, type, assignedTo, description } = this.state;
     return (
       <div
@@ -76,6 +76,27 @@ class HomeRightPanel extends Component {
         <div className="inputGroup">
           <label htmlFor="title">Title : </label>
           <input value={title} onChange={this.handleChange('title')}/>
+        </div>
+        <div className="inputGroup">
+          <label htmlFor="type">Status: </label>
+          <select
+            name="status"
+            onChange={this.handleChange('status')}
+          >
+            {
+              statusTypes.map((typeOfStatus, index) => {
+                return (
+                  <option
+                    key={index}
+                    value={typeOfStatus}
+                    selected={type === typeOfStatus ? true : false}
+                  >
+                    {typeOfStatus}
+                  </option>
+                )
+              })
+            }
+          </select>
         </div>
         <div className="inputGroup">
           <label htmlFor="type">Type: </label>

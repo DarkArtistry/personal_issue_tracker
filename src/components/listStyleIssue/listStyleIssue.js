@@ -32,7 +32,7 @@ const ListStyleIssue = ({
     dragEndHoist()
   }
 
-  const { id, title, type, assignedTo, description } = data;
+  const { id, title, type, assignedTo, description, status } = data;
 
   return (
     <div
@@ -44,6 +44,7 @@ const ListStyleIssue = ({
     >
       <h2>{title}</h2>
       <div>Case ID : {id}</div>
+      <div>{status}</div>
       <div>{type}</div>
       <div>{description}</div>
       <div>{assignedTo}</div>

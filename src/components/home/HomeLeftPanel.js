@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeLeftPanel.css';
 import ListStyleIssue from '../listStyleIssue/listStyleIssue.js';
+import PieChartContainer from '../pieChart/PieChartContainer.js';
 import { issueClicked, issueSort } from '../../actions';
 
 // NOTE: the left component however is to render according to the redux
@@ -31,16 +32,19 @@ class HomeLeftPanel extends Component {
       title: '',
       type: 'question',
       assignedTo: '',
-      description: ''
+      description: '',
+      status: 'open'
     }
     this.props.issueClicked(formData)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    let { issues } = this.props;
+    const { issues, isFetchingIssue } = this.props;
+    const issuesString = JSON.stringify(issues);
+    const prevIssuesString = JSON.stringify(prevProps.issues)
     let difference = [
-      (this.props.isFetchingIssue !== prevProps.isFetchingIssue),
-      (issues && prevProps.issues && (issues.length !== prevProps.issues.length))
+      (isFetchingIssue !== prevProps.isFetchingIssue),
+      (issuesString !== prevIssuesString)
     ].some(value => { return value === true })
 
     if (difference) {
@@ -88,7 +92,9 @@ class HomeLeftPanel extends Component {
     const { issues } = this.state;
     return (
       <div className="HomeLeftPanel">
-        <div>Chart Here</div>
+        {/* <div> */}
+          <PieChartContainer/>
+        {/* </div> */}
         <div>
           <button type="button" onClick={this.handleNewIssue}>
             New Issue

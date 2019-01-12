@@ -6,29 +6,34 @@ import './Home.css';
 
 class Home extends Component {
 
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      issues: []
+    };
+  }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-
+    const { formIssue, issues , showForm, isFetchingIssue } = this.props;
     let difference = [
-      (this.props.isFetchingIssue !== prevProps.isFetchingIssue),
-      (this.props.formIssue && (this.props.formIssue.id !== prevProps.formIssue.id))
+      (isFetchingIssue !== prevProps.isFetchingIssue),
+      (formIssue && (formIssue.id !== prevProps.formIssue.id))
     ].some(value => { return value === true })
 
     if (difference) {
       this.setState({
-        issues: this.props.issues,
-        showForm: this.props.showForm
+        issues: issues,
+        showForm: showForm
       })
     }
   }
 
   render() {
     const { showForm, formIssue } = this.props;
+    const { issues } = this.state;
     return (
       <div className="Home">
-        <HomeLeftPanel issues={this.state.issues}/>
-        { console.log('showForm is', showForm)}
+        <HomeLeftPanel issues={issues}/>
         { showForm ? <HomeRightPanel formData={formIssue} /> : ''}
       </div>
     );
@@ -44,7 +49,6 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   let stateIssues = state.issues;
-  console.log('statessss', state);
   return {
     isFetchingIssue: stateIssues.isFetching,
     issues: stateIssues.data ? stateIssues.data : stateIssues,

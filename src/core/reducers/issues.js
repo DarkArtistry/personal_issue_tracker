@@ -63,10 +63,10 @@ const issues = (state = { issues: [] }, action) => {
           title: '',
           type: 'question',
           assignedTo: '',
-          description: ''
+          description: '',
+          status: 'open'
         },
         showForm: false,
-
       }
       break;
     default:
