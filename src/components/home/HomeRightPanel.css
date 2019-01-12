@@ -1,16 +1,49 @@
 .HomeRightPanel {
   position: relative;
   min-height: 100vh;
-  min-width: 25vw;
-  background-color: yellow;
+  min-width: 20%;
+  background-color: white;
   text-align: justify;
+  border-left: solid rgb(103, 114, 128) 0.1em;
+  padding-left: 1rem;
+  padding-top: 1rem;
 }
 
 .inputGroup {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 textarea {
+  margin-top: 1em;
+  width: 98%;
   resize: none;
   vertical-align: top;
+}
+
+.title {
+  width: 78%;
+  height: 3em;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0 2em;
+}
+
+.assignedTo {
+  height: 1.8em;
+  font-size: 1em;
+  width: 64%;
+}
+
+.status {
+  height: 1.8em;
+  font-size: 1em;
+}
+
+.type {
+  height: 1.8em;
+  font-size: 1em;
+}
+
+#labelType {
+  margin-left: 1em;
 }

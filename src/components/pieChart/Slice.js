@@ -17,7 +17,7 @@ class Slice extends Component {
               dy=".35em"
               textAnchor="middle"
               fill="white">
-          {label} {label > 0 ? issueType : ''}
+          {label > 0 ? label : ''} {label > 0 ? issueType : ''}
         </text>
       </g>
     );

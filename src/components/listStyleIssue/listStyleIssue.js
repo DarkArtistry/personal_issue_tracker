@@ -42,12 +42,13 @@ const ListStyleIssue = ({
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
     >
-      <h2>{title}</h2>
-      <div>Case ID : {id}</div>
-      <div>{status}</div>
-      <div>{type}</div>
-      <div>{description}</div>
-      <div>{assignedTo}</div>
+      <h3>{title}</h3>
+      <div className="issueRow">iD: {id}</div>
+      <div className="issueRow">status: {status}</div>
+      <div className="issueRow">type: {type}</div>
+      <div className="issueRow">description: </div>
+      <div className="issueRow">{description}</div>
+      <div className="issueRow">assigned to: {assignedTo}</div>
     </div>
   );
 

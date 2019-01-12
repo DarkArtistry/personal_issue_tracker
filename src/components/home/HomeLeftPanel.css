@@ -2,11 +2,27 @@
   position: relative;
   min-height: 100vh;
   min-width: 75vw;
-  background-color: green;
+  background-color: white;
 }
 
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.itemHovered > :first-child {
+  border: rgb(30, 150, 191) solid 0.1em;
+  box-shadow: 5px 10px rgb(38, 157, 233);
+}
+
+.newIssue {
+  height: 1.8em;
+  font-size: 1em;
+  border-radius: 1rem;
+}
+
+.instructions {
+  font-size: 0.7rem;
+  padding-top: 0.5rem;
 }

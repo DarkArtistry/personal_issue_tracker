@@ -1,3 +1,21 @@
 .issueListStyle {
-  background-color: rgb(57, 198, 212);
+  border: black solid 0.1em;
+  border-radius: 3em;
+  margin: 2em;
+  /* box-shadow: 5px 10px #888888; */
+  padding: 1em 5em;
+  text-align: justify;
+}
+
+.issueDragged {
+  border: rgb(30, 150, 191) solid 0.1em;
+  box-shadow: 5px 10px rgb(38, 157, 233);
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.issueRow {
+  margin-bottom: 1em;
 }

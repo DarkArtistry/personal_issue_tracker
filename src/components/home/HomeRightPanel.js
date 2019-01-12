@@ -72,14 +72,18 @@ class HomeRightPanel extends Component {
         className='HomeRightPanel'
         // ref={node => this.node = node}
       >
-        Right Form For Issues
         <div className="inputGroup">
-          <label htmlFor="title">Title : </label>
-          <input value={title} onChange={this.handleChange('title')}/>
+          <input
+            className="title"
+            value={title}
+            onChange={this.handleChange('title')}
+            placeholder="Title"
+          />
         </div>
         <div className="inputGroup">
           <label htmlFor="type">Status: </label>
           <select
+            className="status"
             name="status"
             onChange={this.handleChange('status')}
           >
@@ -97,10 +101,11 @@ class HomeRightPanel extends Component {
               })
             }
           </select>
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="type">Type: </label>
+        {/* </div>
+        <div className="inputGroup"> */}
+          <label id="labelType" htmlFor="type"> Type: </label>
           <select
+            className="type"
             name="type"
             onChange={this.handleChange('type')}
           >
@@ -122,6 +127,7 @@ class HomeRightPanel extends Component {
         <div className="inputGroup">
           <label htmlFor="assignedTo">Assigned To : </label>
           <input
+            className="assignedTo"
             name="assignedTo"
             onChange={this.handleChange('assignedTo')}
             value={assignedTo}

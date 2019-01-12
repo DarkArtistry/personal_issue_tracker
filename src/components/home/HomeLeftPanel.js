@@ -22,7 +22,8 @@ class HomeLeftPanel extends Component {
     super(props);
     this.state = {
       issues: props.issues || [],
-      draggedItem: {}
+      draggedItem: {},
+      hoveredItem: null
     };
   }
 
@@ -70,7 +71,7 @@ class HomeLeftPanel extends Component {
     let issues = this.state.issues.filter(issue => issue !== draggedItem);
     // add the dragged item after the dragged over item
     issues.splice(index, 0, draggedItem);
-    this.setState({ issues });
+    this.setState({ issues, hoveredItem: index });
   };
 
   // NOTE: To have the alignment persist in the localStorage, we will need to
@@ -83,29 +84,30 @@ class HomeLeftPanel extends Component {
   dragEndHoist = () => {
     const { draggedItem, issues } = this.state;
     this.setState({
-      draggedItem: {}
+      draggedItem: {},
+      hoveredItem: null
     })
     this.props.issueSort(issues)
   }
 
   render() {
-    const { issues } = this.state;
+    const { issues, hoveredItem } = this.state;
     return (
       <div className="HomeLeftPanel">
-        {/* <div> */}
+        <h2>Issue Tracker</h2>
           <PieChartContainer/>
-        {/* </div> */}
         <div>
-          <button type="button" onClick={this.handleNewIssue}>
+          <button className="newIssue" type="button" onClick={this.handleNewIssue}>
             New Issue
           </button>
         </div>
-        <div>
+        <div className="instructions">
           Drag & Drop Issue To Re-Arrange
         </div>
         <ul>
           { issues && issues.map((eachIssue, index) => {
             return <li
+              className={hoveredItem === index ? 'itemHovered': ''}
               key={index}
               onDragOver={this.onDragOver(index)}>
               <ListStyleIssue
